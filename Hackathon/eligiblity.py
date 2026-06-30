@@ -110,28 +110,14 @@ def check_eligibility(scheme: str, user_answers: dict) -> dict:
 # ─────────────────────────────────────────
 
 if __name__ == "__main__":
-
     print("── PM-KISAN ──")
     print(check_eligibility("pmkisan", {"owns_land": True, "land_hectares": 1.5, "is_govt_employee": False, "is_taxpayer": False, "is_professional": False}))
     print(check_eligibility("pmkisan", {"owns_land": True, "land_hectares": 3.0, "is_govt_employee": False, "is_taxpayer": False, "is_professional": False}))
-    print(check_eligibility("pmkisan", {"owns_land": False, "land_hectares": 0, "is_govt_employee": False, "is_taxpayer": False, "is_professional": False}))
-    print(check_eligibility("pmkisan", {"owns_land": True, "land_hectares": 1.0, "is_govt_employee": True, "is_taxpayer": False, "is_professional": False}))
 
     print("\n── PM Scholarship ──")
     print(check_eligibility("pmss", {"is_ward_of_exserviceman": True, "class12_percentage": 75, "annual_family_income": 450000, "is_pursuing_professional": True}))
     print(check_eligibility("pmss", {"is_ward_of_exserviceman": False, "class12_percentage": 80, "annual_family_income": 300000, "is_pursuing_professional": True}))
-    print(check_eligibility("pmss", {"is_ward_of_exserviceman": True, "class12_percentage": 85, "annual_family_income": 800000, "is_pursuing_professional": True}))
-    print(check_eligibility("pmss", {"is_ward_of_exserviceman": True, "class12_percentage": 55, "annual_family_income": 300000, "is_pursuing_professional": True}))
 
     print("\n── Ayushman Bharat ──")
     print(check_eligibility("pmjay", {"annual_family_income": 250000, "has_govt_health_insurance": False, "is_govt_employee": False, "family_size": 4}))
     print(check_eligibility("pmjay", {"annual_family_income": 250000, "has_govt_health_insurance": False, "is_govt_employee": True, "family_size": 3}))
-    print(check_eligibility("pmjay", {"annual_family_income": 200000, "has_govt_health_insurance": True, "is_govt_employee": False, "family_size": 5}))
-
-    print("\n── Edge Cases ──")
-    # Exactly 2 hectares boundary — should be eligible
-    print(check_eligibility("pmkisan", {"owns_land": True, "land_hectares": 2.0, "is_govt_employee": False, "is_taxpayer": False, "is_professional": False}))
-    # Doctor who owns land — excluded
-    print(check_eligibility("pmkisan", {"owns_land": True, "land_hectares": 1.0, "is_govt_employee": False, "is_taxpayer": False, "is_professional": True}))
-    # Unknown scheme
-    print(check_eligibility("xyz", {}))
